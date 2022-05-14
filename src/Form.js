@@ -1,14 +1,31 @@
 import React from "react";
 
-export default function (
-  //param props movie
-  props
-) {
-  const { movie } = props;
+//param props movie
+export default function (props) {
+  //hooks
+  const [quantity, setQuantity] = React.useState(0);
+  const { movie } = props; // destruturing
+  console.log(props);
+  //itera cada uno de los movies
   return (
     <form>
       <h3> {movie.name} </h3>
-      <button> - </button>0<button> + </button>
+      <button
+        type="button"
+        onClick={() => setQuantity(quantity - 1)}
+        disabled={quantity <= 0}
+      >
+        {" "}
+        -{" "}
+      </button>
+      {quantity}
+      <button
+        type="button"
+        onClick={() => setQuantity(quantity + 1)}
+        disabled={movie.available === quantity}
+      >
+        +
+      </button>
     </form>
   );
 }
